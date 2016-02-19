@@ -44,7 +44,7 @@ UD.init = function()
 {	
 	var mapOptions = {
 		center: [34.243594729697406, -118.2073974609375],
-		zoom: 9
+		zoom: 10
 	};
 	UD.map = new L.Map('cartodb-map', mapOptions);
 
