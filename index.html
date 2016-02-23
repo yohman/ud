@@ -35,7 +35,7 @@
 	<div id='cartodb-map'></div>
 
 	<!-- navigation bar to choose parameters and years -->
-	<div style="position:absolute;top:10px;right:10px">
+	<div style="position:absolute;top:10px;right:40px">
 		<div class="btn-group" role="group" aria-label="...">
 			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,11 +45,17 @@
 				<ul class="dropdown-menu">
 					<li><a href="#" title="Population">Population</a></li>
 					<li><a href="#" title="PercentPoverty">Percent Poverty</a></li>
+					<li><a href="#" title="Majority">Ethnic Majority</a></li>
+					<li><a href="#" title="medhhinc">Median Household Income</a></li>
+					<li><a href="#" title="pct_lths">% Adults (25+) with Less Than High School Completion</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#" title="popden_chg_90_00">Change in Population Density per Square Mile (1990-2000)</a></li>
+					<li><a href="#" title="popden_chg_00_13">Change in Population Density per Square Mile (2000-2013)</a></li>
 				</ul>
 			</div>
-			<button type="button" class="year btn btn-default">1990</button>
-			<button type="button" class="year btn btn-default">2000</button>
-			<button type="button" class="year btn btn-default">2013</button>
+			<button type="button" id="btn1990" class="year btn btn-default">1990</button>
+			<button type="button" id="btn2000" class="year btn btn-default">2000</button>
+			<button type="button" id="btn2013" class="year btn btn-default">2013</button>
 		</div>
 	</div>
 </body>
