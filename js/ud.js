@@ -25,6 +25,8 @@ UD.medhhinc2013 = "https://uducla.cartodb.com/api/v2/viz/6099362c-d9b0-11e5-b833
 UD.popden_chg_90_00 = "https://uducla.cartodb.com/api/v2/viz/7fcfb40a-d9b3-11e5-b285-0ecfd53eb7d3/viz.json";
 UD.popden_chg_00_13 = "https://uducla.cartodb.com/api/v2/viz/05efabbc-d9b4-11e5-badc-0e3ff518bd15/viz.json";
 
+// identify which variables are change parameters so we can hide the year buttons
+UD.changeVars = ['popden_chg_90_00','popden_chg_00_13']
 /*
 
 	On document load
@@ -74,6 +76,16 @@ UD.addLayer = function(param,year)
 	// get rid of any open tooltip windows and legends
 	$('.cartodb-tooltip').hide();
 	$('.cartodb-legend-stack').hide();
+
+	// hide year buttons if change param
+	if(UD.changeVars.indexOf(param)>-1)
+	{
+		$('#button-years').hide();
+	}
+	else
+	{
+		$('#button-years').show();
+	}
 
 	// hide existing layer
 	if(UD.layer) UD.layer.hide();
