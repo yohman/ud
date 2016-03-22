@@ -49,9 +49,25 @@ UD.MGR_chg_90_00 = "https://uducla.cartodb.com/api/v2/viz/c0d9c510-ef8b-11e5-b4e
 UD.MGR_chg_00_13 = "https://uducla.cartodb.com/api/v2/viz/87b13060-ef8c-11e5-b568-0e3ff518bd15/viz.json";
 UD.RB_chg_90_00 = "https://uducla.cartodb.com/api/v2/viz/79eb1ee0-ef92-11e5-9f6b-0e5db1731f59/viz.json";
 UD.RB_chg_00_13 = "https://uducla.cartodb.com/api/v2/viz/2da88422-ef93-11e5-b112-0e5db1731f59/viz.json";
+UD.jobden2013 = "https://uducla.cartodb.com/api/v2/viz/63f8c478-efc1-11e5-b7c4-0ea31932ec1d/viz.json";
+UD.hcv_rept00 = "https://uducla.cartodb.com/api/v2/viz/7bbdf59c-efda-11e5-bfb9-0e674067d321/viz.json";
+UD.hcv_rept13 = "https://uducla.cartodb.com/api/v2/viz/a956202a-efd9-11e5-9554-0e787de82d45/viz.json";
+UD.lihtc00 = "https://uducla.cartodb.com/api/v2/viz/f1b9bbde-efe2-11e5-8004-0e31c9be1b51/viz.json";
+UD.lihtc13 = "https://uducla.cartodb.com/api/v2/viz/9454d168-efe2-11e5-9edf-0e3ff518bd15/viz.json";
+UD.lihtc_chg_00_13 = "https://uducla.cartodb.com/api/v2/viz/e1181dd6-efea-11e5-80f2-0ea31932ec1d/viz.json";
+UD.ttl_housing_05_13 = "https://uducla.cartodb.com/api/v2/viz/84180262-efeb-11e5-8209-0e787de82d45/viz.json";
+UD.condos_05_13 = "https://uducla.cartodb.com/api/v2/viz/fbe10bb8-efeb-11e5-b9af-0e5db1731f59/viz.json";
+UD.sfh_05_13 = "https://uducla.cartodb.com/api/v2/viz/92407bde-efec-11e5-8f03-0e787de82d45/viz.json";
+UD.other_housing_05_13 = "https://uducla.cartodb.com/api/v2/viz/c22ab588-eff3-11e5-869b-0e787de82d45/viz.json";
+UD.pct_condoconv_03_13 = "https://uducla.cartodb.com/api/v2/viz/48526ab6-eff4-11e5-b6da-0ecd1babdde5/viz.json";
+
+UD.hcv_chg_00_13 = "https://uducla.cartodb.com/api/v2/viz/4a8da4c0-efe1-11e5-b704-0ecfd53eb7d3/viz.json";
+UD.upscaling_00_13 = "https://uducla.cartodb.com/api/v2/viz/cf506d7e-eff4-11e5-8004-0e31c9be1b51/viz.json";
+UD.eligible_00_13 = "https://uducla.cartodb.com/api/v2/viz/2e33d7d0-eff6-11e5-b6da-0ecd1babdde5/viz.json";
+UD.gentrify_00_13 = "https://uducla.cartodb.com/api/v2/viz/0b60d61c-eff7-11e5-bcac-0ecfd53eb7d3/viz.json";
 
 // identify which variables are change parameters so we can hide the year buttons
-UD.changeVars = ['popden_chg_90_00','popden_chg_00_13','NHWhite_chg_90_00','NHWhite_chg_00_13','LTHS_chg_90_00','LTHS_chg_00_13','WCD_chg_90_00','WCD_chg_00_13','MHI_chg_90_00','MHI_chg_00_13','MGR_chg_90_00','MGR_chg_00_13','RB_chg_90_00','RB_chg_00_13']
+UD.changeVars = ['popden_chg_90_00','popden_chg_00_13','NHWhite_chg_90_00','NHWhite_chg_00_13','LTHS_chg_90_00','LTHS_chg_00_13','WCD_chg_90_00','WCD_chg_00_13','MHI_chg_90_00','MHI_chg_00_13','MGR_chg_90_00','MGR_chg_00_13','RB_chg_90_00','RB_chg_00_13','jobden2013','hcv_rept00','hcv_rept13','hcv_chg_00_13','lihtc00','lihtc13','lihtc_chg_00_13','condos_05_13','sfh_05_13','other_housing_05_13','pct_condoconv_03_13','upscaling_00_13','eligible_00_13','gentrify_00_13']
 
 /*
 
@@ -150,7 +166,7 @@ UD.addLayer = function(param,year)
 	{
 		var jsonURL = UD[UD.param+UD.year]
 	}
-
+console.log(jsonURL)
 	// add layer
 	cartodb.createLayer(UD.map, jsonURL,{tooltip:true})
 		.addTo(UD.map)
