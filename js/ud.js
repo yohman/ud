@@ -4,8 +4,11 @@
 
 */
 var UD = {};
-UD.map;
-UD.year = 1990;
+UD.dualmap = false;
+UD.map1;
+UD.map2;
+UD.year1 = 1990;
+UD.year2 = 1990;
 UD.param = 'Majority1990';
 UD.PercentPoverty1990 = "https://uducla.cartodb.com/api/v2/viz/8ed490f2-d69c-11e5-ae04-0ecd1babdde5/viz.json";
 UD.PercentPoverty2000 = "https://uducla.cartodb.com/api/v2/viz/a25dc53a-d69c-11e5-8997-0e674067d321/viz.json";
@@ -67,7 +70,7 @@ UD.eligible_00_13 = "https://uducla.cartodb.com/api/v2/viz/2e33d7d0-eff6-11e5-b6
 UD.gentrify_00_13 = "https://uducla.cartodb.com/api/v2/viz/0b60d61c-eff7-11e5-bcac-0ecfd53eb7d3/viz.json";
 
 // identify which variables are change parameters so we can hide the year buttons
-UD.changeVars = ['popden_chg_90_00','popden_chg_00_13','NHWhite_chg_90_00','NHWhite_chg_00_13','LTHS_chg_90_00','LTHS_chg_00_13','WCD_chg_90_00','WCD_chg_00_13','MHI_chg_90_00','MHI_chg_00_13','MGR_chg_90_00','MGR_chg_00_13','RB_chg_90_00','RB_chg_00_13','jobden2013','hcv_rept00','hcv_rept13','hcv_chg_00_13','lihtc00','lihtc13','lihtc_chg_00_13','condos_05_13','sfh_05_13','other_housing_05_13','pct_condoconv_03_13','upscaling_00_13','eligible_00_13','gentrify_00_13']
+UD.changeVars = ['ttl_housing_05_13','popden_chg_90_00','popden_chg_00_13','NHWhite_chg_90_00','NHWhite_chg_00_13','LTHS_chg_90_00','LTHS_chg_00_13','WCD_chg_90_00','WCD_chg_00_13','MHI_chg_90_00','MHI_chg_00_13','MGR_chg_90_00','MGR_chg_00_13','RB_chg_90_00','RB_chg_00_13','jobden2013','hcv_rept00','hcv_rept13','hcv_chg_00_13','lihtc00','lihtc13','lihtc_chg_00_13','condos_05_13','sfh_05_13','other_housing_05_13','pct_condoconv_03_13','upscaling_00_13','eligible_00_13','gentrify_00_13']
 
 /*
 
@@ -77,7 +80,13 @@ UD.changeVars = ['popden_chg_90_00','popden_chg_00_13','NHWhite_chg_90_00','NHWh
 var baselayer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
 });
+var baselayer2 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+});
 var labellayer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png',{
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+});
+var labellayer2 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png',{
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
 });
 
@@ -89,20 +98,44 @@ var labellayer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels
 $( document ).ready(function() {
 	UD.init();
 
-	$(".dropdown-menu li a").click(function(){
+	// clone the dropdown and add to second map
+	// change the id's and classes accordingly
+	$('#ud-dropdown').clone().attr('id','ud-dropdown2').appendTo('#dropdown-container').find('ul').toggleClass('menu1 menu2');
+	$('#ud-dropdown2').find('.year').toggleClass('year year2');
+	$('#ud-dropdown2').hide();
+
+	// assign actions to drop down selections
+	$(".menu1 li a").click(function(){
 		var selText = $(this).text();
 		var param = $(this).attr('title');
 		$(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
 		$('.year').removeClass('btn-info');
-		$('#btn'+UD.year).addClass('btn-info');
-		UD.addLayer(param,UD.year);
+		$('#btn'+UD.year1).addClass('btn-info');
+		UD.addLayer(param,UD.year1,UD.map1);
 	});
 
+	$(".menu2 li a").click(function(){
+		var selText = $(this).text();
+		var param = $(this).attr('title');
+		$(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+		$('.year2').removeClass('btn-info');
+		$('#ud-dropdown2').find('#btn'+UD.year2).addClass('btn-info');
+		UD.addLayer(param,UD.year2,UD.map2);
+	});
+
+	// assign actions to year selections
 	$(".year").click(function(){
 		var year = $(this).text();
 		$('.year').removeClass('btn-info');
 		$(this).addClass('btn-info');
 		UD.addLayer(UD.param,year);
+	});
+	$(".year2").click(function(){
+		console.log(this)
+		var year = $(this).text();
+		$('.year2').removeClass('btn-info');
+		$(this).addClass('btn-info');
+		UD.addLayer(UD.param,year,UD.map2);
 	});
 });
 
@@ -117,41 +150,82 @@ UD.init = function()
 		center: [33.98037811701901,-118.23280334472658],
 		zoom: 10
 	};
-	UD.map = new L.Map('cartodb-map', mapOptions);
+	UD.map1 = new L.Map('map1', mapOptions);
+	UD.map2 = new L.Map('map2', mapOptions);
 
-	UD.map.addLayer(baselayer);
+	UD.map1.addLayer(baselayer);
+	UD.map2.addLayer(baselayer2);
+	UD.map1.sync(UD.map2);
+	UD.map2.sync(UD.map1);
+
+	// sync maps on pan
+	UD.map1.on('mousedown', function(e) {
+		UD.map1.sync(UD.map2);
+		UD.map2.sync(UD.map1);
+	});
+	UD.map2.on('mousedown', function(e) {
+		UD.map1.sync(UD.map2);
+		UD.map2.sync(UD.map1);
+	});
 }
 
-UD.addLayer = function(param,year)
+UD.addLayer = function(param,year,map2use)
 {
-	// remove labels
-	UD.map.removeLayer(labellayer)
-
-	// get rid of any open tooltip windows and legends
-	$('.cartodb-tooltip').hide();
-	$('.cartodb-legend-stack').hide();
-
-	// hide year buttons if change param
-	if(UD.changeVars.indexOf(param)>-1)
+	// hide existing layer
+	if(map2use == UD.map1)
 	{
-		$('#button-years').hide();
+		if(UD.layer1) UD.layer1.hide();
+		// remove labels
+		map2use.removeLayer(labellayer)
+		if(year !== undefined)
+		{
+			UD.year1 = year;
+		}
+		// remove old legend
+		$('#map1').find('.cartodb-legend-stack').hide();
+
+		// hide year buttons if change param
+		if(UD.changeVars.indexOf(param)>-1)
+		{
+			$('#ud-dropdown').find('#button-years').hide();
+		}
+		else
+		{
+			$('#ud-dropdown').find('#button-years').show();
+		}
+
 	}
 	else
 	{
-		$('#button-years').show();
-	}
+		if(UD.layer2) UD.layer2.hide();
+		// remove labels
+		map2use.removeLayer(labellayer2)
+		if(year !== undefined)
+		{
+			UD.year2 = year;
+		}
+		// remove old legend
+		$('#map2').find('.cartodb-legend-stack').hide();
 
-	// hide existing layer
-	if(UD.layer) UD.layer.hide();
+		// hide year buttons if change param
+		if(UD.changeVars.indexOf(param)>-1)
+		{
+			$('#ud-dropdown2').find('#button-years').hide();
+		}
+		else
+		{
+			$('#ud-dropdown2').find('#button-years').show();
+		}
+	}
+	
+	// get rid of any open tooltip windows and legends
+	$('.cartodb-tooltip').hide();
+
 
 	// defaults
 	if(param !== undefined)
 	{
 		UD.param = param;
-	}
-	if(year !== undefined)
-	{
-		UD.year = year;
 	}
 
 	// jsonlayer to add
@@ -164,18 +238,27 @@ UD.addLayer = function(param,year)
 	}
 	else
 	{
-		var jsonURL = UD[UD.param+UD.year]
+		var jsonURL = UD[UD.param+year]
 	}
-console.log(jsonURL)
 	// add layer
-	cartodb.createLayer(UD.map, jsonURL,{tooltip:true})
-		.addTo(UD.map)
+	cartodb.createLayer(map2use, jsonURL,{tooltip:true})
+		.addTo(map2use)
 		.on('done', function(layer) {
-
-			UD.layer = layer;
 			layer
 			.on('load',function(){
-				UD.map.addLayer(labellayer)
+				// hide existing layer
+				if(map2use == UD.map1)
+				{
+					UD.layer1 = layer;
+					map2use.addLayer(labellayer)
+				}
+				else
+				{
+					UD.layer2 = layer;
+					map2use.addLayer(labellayer2)
+				}
+
+
 			})
 			.on('featureOver', function(e, latlng, pos, data) {
 				
@@ -189,3 +272,35 @@ console.log(jsonURL)
 		console.log("some error occurred: " + err);
 	});
 }
+
+UD.toggleDualMap = function()
+{
+	// resync maps because buggy if you don't
+	UD.map1.sync(UD.map2);
+	UD.map2.sync(UD.map1);
+
+	if(UD.dualmap)
+	{
+		$('#map2').hide(); 
+		$('#ud-dropdown2').hide();
+		$('#map1').css('width','100%'); 
+		$('#map1').css('border-right','0px solid black');
+		$('#map2').css('border-left','0px solid black');
+		UD.map1.invalidateSize();
+		UD.dualmap = false;
+	}
+	else
+	{
+		$('#map2').show();
+		$('#ud-dropdown2').show();
+		// $('#map1').animate({ width: "50%" }, 1000 )
+		$('#map1').css('width','50%'); 
+		$('#map1').css('border-right','2px solid black');
+		$('#map2').css('border-left','2px solid black');
+		UD.map1.invalidateSize();		
+		UD.map2.invalidateSize();		
+		UD.dualmap = true;
+
+	}
+}
+

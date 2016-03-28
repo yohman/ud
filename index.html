@@ -25,33 +25,50 @@
 
 	<style>
 		html, body {width:100%; height:100%; padding: 0; margin: 0;}
-		#cartodb-map { width: 100%; height:100%; background: black;}
+		#map1 { width: 100%; height:100%; float: left; background: black;}
+		#map2 { width: 50%; height:100%; float: right; background: black;display: none; }
+		.dropdown-menu {
+			height: auto;
+			overflow-x: hidden;
+			max-height: 400px;
+		}
+		#dual-map-button { text-align: center;position: absolute;bottom: 10px;width: 100%; }
+		/*.map-cell {width:100%;}*/
 	</style>
 
 </head>
 
 <body>
 	<!-- map container -->
-	<div id='cartodb-map'></div>
+	<div id='map1' class="cartodb-map map-cell"></div>
+	<div id='map2' class="cartodb-map map-cell"></div>
+
+	<script src="js/L.Map.Sync.js"></script>
 
 	<!-- navigation bar to choose parameters and years -->
 	<div style="position:absolute;top:10px;left:80px">
-		<div class="btn-group" role="group" aria-label="...">
+		<div id="ud-dropdown" class="btn-group" role="group" aria-label="...">
 			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Choose parameter to map
 					<span class="caret"></span>
 				</button>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu menu1">
+					<li><a href="#" title="Majority">Racial/Ethnic Composition</a></li>
+					<li><a href="#" title="upscaling_00_13">2000-2013 Upscaling</a></li>
+					<li><a href="#" title="eligible_00_13">Eligible to Gentrify (1990-2000, 2000-2013)</a></li>
+					<li><a href="#" title="gentrify_00_13">Gentrified (1990-2000, 2000-2013)</a></li>
+
+					<li role="separator" class="divider"></li>
+ 
 					<li><a href="#" title="PopulationDensity">Population Density</a></li>
 					<li><a href="#" title="PercentPoverty">Percent Poverty</a></li>
-					<li><a href="#" title="Majority">Racial/Ethnic Composition</a></li>
 					<li><a href="#" title="medhhinc">Median Household Income</a></li>
 					<li><a href="#" title="pct_lths">% Adults (25+) with Less Than High School Completion</a></li>
 					<li><a href="#" title="pct_col">% with College Degree</a></li>
 					<li><a href="#" title="pct_renter">% Renter</a></li>
 					<li><a href="#" title="mgr">Median Gross Rent</a></li>
-					<li><a href="#" title="pct_rb">% Rent Burden</a></li>
+					<li><a href="#" title="pct_rb">% Rent Burden</a></li>					
 
 					<li role="separator" class="divider"></li>
 
@@ -67,12 +84,6 @@
 					<li><a href="#" title="sfh_05_13">Number of Condo Units Built Between 2005-2013</a></li>
 					<li><a href="#" title="other_housing_05_13">Number of Other Type of Housing Units Built Between 2005-2013</a></li>
 					<li><a href="#" title="pct_condoconv_03_13">2003-2013 % Condo Conversion </a></li>
-
-					<li role="separator" class="divider"></li>
- 
-					<li><a href="#" title="upscaling_00_13">2000-2013 Upscaling</a></li>
-					<li><a href="#" title="eligible_00_13">Eligible to Gentrify (1990-2000, 2000-2013)</a></li>
-					<li><a href="#" title="gentrify_00_13">Gentrified (1990-2000, 2000-2013)</a></li>
 
 					<li role="separator" class="divider"></li>
 
@@ -99,5 +110,14 @@
 			</div>
 		</div>
 	</div>
+	<div id="dropdown-container" style="position:absolute;top:10px;right:80px"></div>
+
+	<div id="dual-map-button">
+		<button type="button" class="btn btn-primary btn-xs" aria-label="Left Align" onclick="UD.toggleDualMap()">
+			<!-- <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>  -->dual maps
+		</button>
+		
+	</div>
+
 </body>
 </html>
