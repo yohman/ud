@@ -128,7 +128,7 @@ $( document ).ready(function() {
 		var year = $(this).text();
 		$('.year').removeClass('btn-info');
 		$(this).addClass('btn-info');
-		UD.addLayer(UD.param,year);
+		UD.addLayer(UD.param,year,UD.map1);
 	});
 	$(".year2").click(function(){
 		console.log(this)
@@ -171,6 +171,7 @@ UD.init = function()
 
 UD.addLayer = function(param,year,map2use)
 {
+	console.log(map2use)
 	// hide existing layer
 	if(map2use == UD.map1)
 	{
