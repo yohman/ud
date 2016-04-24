@@ -167,6 +167,24 @@ UD.init = function()
 		UD.map1.sync(UD.map2);
 		UD.map2.sync(UD.map1);
 	});
+
+	// add layer
+	cartodb.createLayer(UD.map1, 'https://uducla.cartodb.com/api/v2/viz/51c3f1ae-067a-11e6-bb72-0ecd1babdde5/viz.json',{tooltip:true})
+		// .addTo(UD.map1)
+		.on('done', function(metro) {
+			metro.setZIndex(0);
+			var overlayMaps = {
+				"Metro stops": metro
+			};
+			L.control.layers(null, overlayMaps).addTo(UD.map1);
+		})
+		.on('error', function(err) {
+			alert("some error occurred: " + err);
+		});
+
+
+
+	// L.control.layers(null,baselayer).addTo(UD.map1);
 }
 
 UD.addLayer = function(param,year,map2use)
@@ -272,6 +290,14 @@ UD.addLayer = function(param,year,map2use)
 		}).on('error', function(err) {
 		console.log("some error occurred: " + err);
 	});
+}
+
+UD.addMetro = function()
+{
+	// add layer
+	cartodb.createLayer(UD.map1, 'https://uducla.cartodb.com/api/v2/viz/7b22ac78-0596-11e6-b89d-0e31c9be1b51/viz.json',{tooltip:true})
+		.addTo(UD.map1);
+
 }
 
 UD.toggleDualMap = function()
