@@ -20,6 +20,11 @@
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 
+	<!-- geocoder
+	<link rel="stylesheet" href="dist/Control.Geocoder.css" />
+	<script src="dist/Control.Geocoder.js"></script>
+	 -->
+	 
 	<!-- custom javascript -->
 	<script src="js/ud.js"></script>
 
@@ -54,59 +59,40 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu menu1">
-					<li><a href="#" title="Majority">Racial/Ethnic Composition</a></li>
-					<li><a href="#" title="upscaling_00_13">2000-2013 Upscaling</a></li>
-					<li><a href="#" title="eligible_00_13">Eligible to Gentrify (1990-2000, 2000-2013)</a></li>
-					<li><a href="#" title="gentrify_00_13">Gentrified (1990-2000, 2000-2013)</a></li>
+					<li><a href="#" title="disadvantaged_90_15">Disadvantaged neighborhoods, 1990-2015</a></li>
+					<li><a href="#" title="gentrify_90_15">Gentrified neighborhoods, 1990-2015</a></li>
+					<li><a href="#" title="Majority">Racial-Ethnic Composition</a></li>
+					<li><a href="#" title="pct_lths">Adults (25+) with less than high school diploma (%)</a></li>
+					<li><a href="#" title="pct_col">Adults (25+) with college degree (%)</a></li>
+					<li><a href="#" title="IndividualPovertyRates">Individual poverty rates</a></li>
+					<li><a href="#" title="MedianHHIncome">Median household Income (2015 $)</a></li>
+					<li><a href="#" title="JobDensity2015">Job density, 2015</a></li>
+					<li><a href="#" title="RenterHH">Renter households (%)</a></li>
+					<li><a href="#" title="MedianGrossRent">Median gross rent (2015 $)</a></li>
+					<li><a href="#" title="BurdenedRenterHH">Burdened renter households (%)</a></li>
+					<li><a href="#" title="Section8HH2000">Section 8 households (%, 2000)</a></li>
+					<li><a href="#" title="Section8HH2015">Section 8 households (%, 2015)</a></li>
+					<li><a href="#" title="ChangeInNonHispanicWhites_1990_2000">Change in non-Hispanic whites (% pts., 1990-2000)</a></li>
+					<li><a href="#" title="ChangeInNonHispanicWhites_2000_ 2015">Change in non-Hispanic whites (% pts., 2000-2015)</a></li>
+					<li><a href="#" title="ChangeInCollegeEducated_1990_2000">Change in college-educated adult population (% pts., 1990-2000)</a></li>
+					<li><a href="#" title="ChangeInCollegeEducated_2000_2015">Change in college-educated adult population (% pts., 2000-2015)</a></li>
+					<li><a href="#" title="ChangeInMedianHHIncome_1990_2000">Change in median household income, 1990-2000 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInMedianHHIncome_2000_2015">Change in median household income, 2000-2015 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInMedianGrossRent_1990_2000">Change in median gross rent, 1990-2000 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInMedianGrossRent_2000_2015">Change in median gross rent, 2000-2015 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInRentBurdenedHH_1990_2000">Change in rent burdened households (% pts., 1990-2000)</a></li>
+					<li><a href="#" title="ChangeInRentBurdenedHH_2000_2015">Change in rent burdened households (% pts., 2000-2015)</a></li>
+					<li><a href="#" title="ChangeInSection8HH_2000_2015">Change in Section 8 households (% pts., 2000-2015)</a></li>
 
 					<li role="separator" class="divider"></li>
  
-					<li><a href="#" title="PopulationDensity">Population Density</a></li>
-					<li><a href="#" title="PercentPoverty">Percent Poverty</a></li>
-					<li><a href="#" title="medhhinc">Median Household Income</a></li>
-					<li><a href="#" title="pct_lths">% Adults (25+) with Less Than High School Completion</a></li>
-					<li><a href="#" title="pct_col">% with College Degree</a></li>
-					<li><a href="#" title="pct_renter">% Renter</a></li>
-					<li><a href="#" title="mgr">Median Gross Rent</a></li>
-					<li><a href="#" title="pct_rb">% Rent Burden</a></li>					
 
-					<li role="separator" class="divider"></li>
-
-					<li><a href="#" title="jobden2013">2013 Job Density</a></li>
-					<li><a href="#" title="hcv_rept00">2000 Number of Households with Housing Choice Voucher (Section 8)</a></li>
-					<li><a href="#" title="hcv_rept13">2013 Number of Households with Housing Choice Voucher (Section 8)</a></li>
-					<li><a href="#" title="hcv_chg_00_13">2000-2013 Change in Households with Housing Choice Voucher (Section 8) </a></li>
-					<li><a href="#" title="lihtc00">2000 Low-Income Housing Tax Credit - Low Income Units</a></li>
-					<li><a href="#" title="lihtc13">2013 Low-Income Housing Tax Credit - Low Income Units</a></li>
-					<li><a href="#" title="lihtc_chg_00_13">2000-2013 Change in Low-Income Housing Tax Credit - Low Income Units </a></li>
-					<li><a href="#" title="ttl_housing_05_13">Total Number of Housing Units Built Between 2005-2013 </a></li>
-					<li><a href="#" title="condos_05_13">Number of Condo Units Built Between 2005-2013</a></li>
-					<li><a href="#" title="sfh_05_13">Number of Single-Family Homes Built Between 2005-2013</a></li>
-					<li><a href="#" title="other_housing_05_13">Number of Other Type of Housing Units Built Between 2005-2013</a></li>
-					<li><a href="#" title="pct_condoconv_03_13">2003-2013 % Condo Conversion </a></li>
-
-					<li role="separator" class="divider"></li>
-
-					<li><a href="#" title="popden_chg_90_00">Change in Population Density per Square Mile (1990-2000)</a></li>
-					<li><a href="#" title="popden_chg_00_13">Change in Population Density per Square Mile (2000-2013)</a></li>
-					<li><a href="#" title="NHWhite_chg_90_00">Change in Non Hispanic White (1990-2000)</a></li>
-					<li><a href="#" title="NHWhite_chg_00_13">Change in Non Hispanic White (2000-2013)</a></li>
-					<li><a href="#" title="LTHS_chg_90_00">Change in % Less Than High School (1990-2000)</a></li>
-					<li><a href="#" title="LTHS_chg_00_13">Change in % Less Than High School (2000-2013)</a></li>
-					<li><a href="#" title="WCD_chg_90_00">Change in % With College Degree (1990-2000)</a></li>
-					<li><a href="#" title="WCD_chg_00_13">Change in % With College Degree (2000-2013)</a></li>
-					<li><a href="#" title="MHI_chg_90_00">Change in Median Household Income (1990-2000)</a></li>
-					<li><a href="#" title="MHI_chg_00_13">Change in Median Household Income (2000-2013)</a></li>
-					<li><a href="#" title="MGR_chg_90_00">Change in Median Gross Rent (1990-2000)</a></li>
-					<li><a href="#" title="MGR_chg_00_13">Change in Median Gross Rent (2000-2013)</a></li>
-					<li><a href="#" title="RB_chg_90_00">% Change in Rent Burden (1990-2000)</a></li>
-					<li><a href="#" title="RB_chg_00_13">% Change in Rent Burden (2000-2013)</a></li>
 				</ul>
 			</div>
 			<div id="button-years" class="btn-group" role="group">
 				<button type="button" id="btn1990" class="year btn btn-default">1990</button>
 				<button type="button" id="btn2000" class="year btn btn-default">2000</button>
-				<button type="button" id="btn2013" class="year btn btn-default">2013</button>
+				<button type="button" id="btn2015" class="year btn btn-default">2015</button>
 			</div>
 		</div>
 	</div>
