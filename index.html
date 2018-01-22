@@ -52,37 +52,49 @@
 
 	<!-- navigation bar to choose parameters and years -->
 	<div style="position:absolute;top:10px;left:80px">
-		<div id="ud-dropdown" class="btn-group" role="group" aria-label="...">
+		<div id="ud-dropdown" class="" role="group" aria-label="...">
+
+			<!-- map mode toggle -->
+			<button class="btn btn-default dropdown-toggle maptoggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Map mode
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="maptoggle">
+				<li><a href="#" class="single-map" onclick="UD.toggleDualMap('single')">Single map</a></li>
+				<li><a href="#" class="dual-map" onclick="UD.toggleDualMap('dual')">Dual map</a></li>
+			</ul>
+
+			<!-- layer toggle -->
 			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Choose parameter to map
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu menu1">
-					<li><a href="#" title="disadvantaged_90_15">Disadvantaged neighborhoods, 1990-2015</a></li>
-					<li><a href="#" title="gentrify_90_15">Gentrified neighborhoods, 1990-2015</a></li>
-					<li><a href="#" title="Majority">Racial-Ethnic Composition</a></li>
-					<li><a href="#" title="pct_lths">Adults (25+) with less than high school diploma (%)</a></li>
-					<li><a href="#" title="pct_col">Adults (25+) with college degree (%)</a></li>
-					<li><a href="#" title="IndividualPovertyRates">Individual poverty rates</a></li>
-					<li><a href="#" title="MedianHHIncome">Median household Income (2015 $)</a></li>
-					<li><a href="#" title="JobDensity2015">Job density, 2015</a></li>
-					<li><a href="#" title="RenterHH">Renter households (%)</a></li>
-					<li><a href="#" title="MedianGrossRent">Median gross rent (2015 $)</a></li>
-					<li><a href="#" title="BurdenedRenterHH">Burdened renter households (%)</a></li>
-					<li><a href="#" title="Section8HH2000">Section 8 households (%, 2000)</a></li>
-					<li><a href="#" title="Section8HH2015">Section 8 households (%, 2015)</a></li>
-					<li><a href="#" title="ChangeInNonHispanicWhites_1990_2000">Change in non-Hispanic whites (% pts., 1990-2000)</a></li>
-					<li><a href="#" title="ChangeInNonHispanicWhites_2000_ 2015">Change in non-Hispanic whites (% pts., 2000-2015)</a></li>
-					<li><a href="#" title="ChangeInCollegeEducated_1990_2000">Change in college-educated adult population (% pts., 1990-2000)</a></li>
-					<li><a href="#" title="ChangeInCollegeEducated_2000_2015">Change in college-educated adult population (% pts., 2000-2015)</a></li>
-					<li><a href="#" title="ChangeInMedianHHIncome_1990_2000">Change in median household income, 1990-2000 (2015 $)</a></li>
-					<li><a href="#" title="ChangeInMedianHHIncome_2000_2015">Change in median household income, 2000-2015 (2015 $)</a></li>
-					<li><a href="#" title="ChangeInMedianGrossRent_1990_2000">Change in median gross rent, 1990-2000 (2015 $)</a></li>
-					<li><a href="#" title="ChangeInMedianGrossRent_2000_2015">Change in median gross rent, 2000-2015 (2015 $)</a></li>
-					<li><a href="#" title="ChangeInRentBurdenedHH_1990_2000">Change in rent burdened households (% pts., 1990-2000)</a></li>
-					<li><a href="#" title="ChangeInRentBurdenedHH_2000_2015">Change in rent burdened households (% pts., 2000-2015)</a></li>
-					<li><a href="#" title="ChangeInSection8HH_2000_2015">Change in Section 8 households (% pts., 2000-2015)</a></li>
+					<li><a href="#" title="disadvantaged_90_15" class="disadvantaged_90_15">Disadvantaged neighborhoods, 1990-2015</a></li>
+					<li><a href="#" title="gentrify_90_15" class="gentrify_90_15">Gentrified neighborhoods, 1990-2015</a></li>
+					<li><a href="#" title="Majority" class="Majority">Racial-Ethnic Composition</a></li>
+					<li><a href="#" title="pct_lths" class="pct_lths">Adults (25+) with less than high school diploma (%)</a></li>
+					<li><a href="#" title="pct_col" class="pct_col">Adults (25+) with college degree (%)</a></li>
+					<li><a href="#" title="IndividualPovertyRates" class="IndividualPovertyRates">Individual poverty rates</a></li>
+					<li><a href="#" title="MedianHHIncome" class="MedianHHIncome">Median household Income (2015 $)</a></li>
+					<li><a href="#" title="JobDensity2015" class="JobDensity2015">Job density, 2015</a></li>
+					<li><a href="#" title="RenterHH" class="RenterHH">Renter households (%)</a></li>
+					<li><a href="#" title="MedianGrossRent" class="MedianGrossRent">Median gross rent (2015 $)</a></li>
+					<li><a href="#" title="BurdenedRenterHH" class="BurdenedRenterHH">Burdened renter households (%)</a></li>
+					<li><a href="#" title="Section8HH2000" class="Section8HH2000">Section 8 households (%, 2000)</a></li>
+					<li><a href="#" title="Section8HH2015" class="Section8HH2015">Section 8 households (%, 2015)</a></li>
+					<li><a href="#" title="ChangeInNonHispanicWhites_1990_2000" class="ChangeInNonHispanicWhites_1990_2000">Change in non-Hispanic whites (% pts., 1990-2000)</a></li>
+					<li><a href="#" title="ChangeInNonHispanicWhites_2000_  class="ChangeInNonHispanicWhites_2000_"2015">Change in non-Hispanic whites (% pts., 2000-2015)</a></li>
+					<li><a href="#" title="ChangeInCollegeEducated_1990_2000" class="ChangeInCollegeEducated_1990_2000">Change in college-educated adult population (% pts., 1990-2000)</a></li>
+					<li><a href="#" title="ChangeInCollegeEducated_2000_2015" class="ChangeInCollegeEducated_2000_2015">Change in college-educated adult population (% pts., 2000-2015)</a></li>
+					<li><a href="#" title="ChangeInMedianHHIncome_1990_2000" class="ChangeInMedianHHIncome_1990_2000">Change in median household income, 1990-2000 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInMedianHHIncome_2000_2015" class="ChangeInMedianHHIncome_2000_2015">Change in median household income, 2000-2015 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInMedianGrossRent_1990_2000" class="ChangeInMedianGrossRent_1990_2000">Change in median gross rent, 1990-2000 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInMedianGrossRent_2000_2015" class="ChangeInMedianGrossRent_2000_2015">Change in median gross rent, 2000-2015 (2015 $)</a></li>
+					<li><a href="#" title="ChangeInRentBurdenedHH_1990_2000" class="ChangeInRentBurdenedHH_1990_2000">Change in rent burdened households (% pts., 1990-2000)</a></li>
+					<li><a href="#" title="ChangeInRentBurdenedHH_2000_2015" class="ChangeInRentBurdenedHH_2000_2015">Change in rent burdened households (% pts., 2000-2015)</a></li>
+					<li><a href="#" title="ChangeInSection8HH_2000_2015" class="ChangeInSection8HH_2000_2015">Change in Section 8 households (% pts., 2000-2015)</a></li>
 
 					<li role="separator" class="divider"></li>
  

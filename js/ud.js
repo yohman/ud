@@ -86,7 +86,10 @@ $( document ).ready(function() {
 	// change the id's and classes accordingly
 	$('#ud-dropdown').clone().attr('id','ud-dropdown2').appendTo('#dropdown-container').find('ul').toggleClass('menu1 menu2');
 	$('#ud-dropdown2').find('.year').toggleClass('year year2');
+	$('#ud-dropdown2').find('.maptoggle').toggleClass('maptoggle maptoggle2');
 	$('#ud-dropdown2').hide();
+	$('.maptoggle2').hide();
+	$('#dropdown-container').css("right","180px")
 
 	// assign actions to drop down selections
 	$(".menu1 li a").click(function(){
@@ -104,7 +107,8 @@ $( document ).ready(function() {
 		$(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
 		$('.year2').removeClass('btn-info');
 		$('#ud-dropdown2').find('#btn'+UD.year2).addClass('btn-info');
-		UD.addLayer(param,UD.year2,UD.map2);
+		console.log(param)
+		UD.addLayer(param,UD.year2,UD.map2,$(this));
 	});
 
 	// assign actions to year selections
@@ -121,6 +125,10 @@ $( document ).ready(function() {
 		$(this).addClass('btn-info');
 		UD.addLayer(UD.param,year,UD.map2);
 	});
+
+	// add a default map
+	$(".gentrify_90_15").click()
+
 });
 
 /*
@@ -157,42 +165,60 @@ UD.init = function()
 	// 	});		
 	// }
 
-	// add layer
-	cartodb.createLayer(UD.map1, 'https://uducla.cartodb.com/api/v2/viz/7b22ac78-0596-11e6-b89d-0e31c9be1b51/viz.json',{tooltip:true})
+	var layerControl = L.control.layers(null, null,{collapsed:false}).addTo(UD.map1);
+
+	// add layer to Map
+	var overlay_metro = cartodb.createLayer(UD.map1, 'https://uducla.cartodb.com/api/v2/viz/7b22ac78-0596-11e6-b89d-0e31c9be1b51/viz.json',{tooltip:true})
 		// .addTo(UD.map1)
 		.on('done', function(metro) {
 			metro.setZIndex(0);
-			var overlayMaps = {
-				"Metro stops": metro 
-			};
-			L.control.layers(null, overlayMaps).addTo(UD.map1);
+			layerControl.addOverlay(metro, 'Metro stops');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
 		});
 
 	// add layer
-	cartodb.createLayer(UD.map1, 'https://uducla.cartodb.com/api/v2/viz/3acf9c7d-cf95-4d24-bad3-4698ba344943/viz.json',{tooltip:true})
+	var overlay_healthycommunities = cartodb.createLayer(UD.map1, 'https://uducla.cartodb.com/api/v2/viz/3acf9c7d-cf95-4d24-bad3-4698ba344943/viz.json',{tooltip:true})
 		// .addTo(UD.map1)
 		.on('done', function(healthy) {
 			healthy.setZIndex(0);
-			var overlayMaps = {
-				"Building Healthy Communities": healthy
-			};
-			L.control.layers(null, overlayMaps).addTo(UD.map1);
+			layerControl.addOverlay(healthy, 'Healthy Communities');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
 		});
 
 
+	var layerControl2 = L.control.layers(null, null,{collapsed:false}).addTo(UD.map2);
 
-	// L.control.layers(null,baselayer).addTo(UD.map1);
+	// add layer to Map2
+	var overlay_metro = cartodb.createLayer(UD.map2, 'https://uducla.cartodb.com/api/v2/viz/7b22ac78-0596-11e6-b89d-0e31c9be1b51/viz.json',{tooltip:true})
+		// .addTo(UD.map2)
+		.on('done', function(metro) {
+			metro.setZIndex(0);
+			layerControl2.addOverlay(metro, 'Metro stops');
+		})
+		.on('error', function(err) {
+			alert("some error occurred: " + err);
+		});
+
+	// add layer
+	var overlay_healthycommunities = cartodb.createLayer(UD.map2, 'https://uducla.cartodb.com/api/v2/viz/3acf9c7d-cf95-4d24-bad3-4698ba344943/viz.json',{tooltip:true})
+		// .addTo(UD.map1)
+		.on('done', function(healthy) {
+			healthy.setZIndex(0);
+			layerControl2.addOverlay(healthy, 'Healthy Communities');
+		})
+		.on('error', function(err) {
+			alert("some error occurred: " + err);
+		});
 }
 
 UD.addLayer = function(param,year,map2use)
 {
-	console.log(map2use)
+	console.log(param)
+
 	UD.map1.sync(UD.map2);
 	// hide existing layer
 	if(map2use == UD.map1)
@@ -304,14 +330,15 @@ UD.addLayer = function(param,year,map2use)
 
 // }
 
-UD.toggleDualMap = function()
+UD.toggleDualMap = function(mode)
 {
 	// resync maps because buggy if you don't
 	// UD.map1.sync(UD.map2);
 	// UD.map2.sync(UD.map1);
 
-	if(UD.dualmap)
+	if(mode=='single')
 	{
+		$(".maptoggle").html("Single map")
 		$('#map2').hide(); 
 		$('#ud-dropdown2').hide();
 		$('#map1').css('width','100%'); 
@@ -322,6 +349,7 @@ UD.toggleDualMap = function()
 	}
 	else
 	{
+		$(".maptoggle").html("Dual map")
 		$('#map2').show();
 		$('#ud-dropdown2').show();
 		// $('#map1').animate({ width: "50%" }, 1000 )
