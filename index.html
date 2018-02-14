@@ -38,6 +38,20 @@
 			max-height: 400px;
 		}
 		#dual-map-button { text-align: center;position: absolute;bottom: 10px;width: 100%; }
+		.leaflet-top {
+		  	top: 60px;
+		}
+		/*#nav-buttons {
+			position:absolute;top:10px;left:10px
+		}*/
+		#nav-buttons {
+			position: absolute;
+			/* top: 10px; */
+			/* left: 10px; */
+			background: #333;
+			padding: 10px;
+			width: 100%;
+		}
 		/*.map-cell {width:100%;}*/
 	</style>
 
@@ -51,7 +65,7 @@
 	<script src="js/L.Map.Sync.js"></script>
 
 	<!-- navigation bar to choose parameters and years -->
-	<div style="position:absolute;top:10px;left:80px">
+	<div id="nav-buttons" style="">
 		<div id="ud-dropdown" class="" role="group" aria-label="...">
 
 			<!-- map mode toggle -->
@@ -108,14 +122,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="dropdown-container" style="position:absolute;top:10px;right:80px"></div>
-
-	<div id="dual-map-button">
-		<button type="button" class="btn btn-primary btn-xs" aria-label="Left Align" onclick="UD.toggleDualMap()">
-			<!-- <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>  -->dual maps
-		</button>
-		
-	</div>
+	<div id="dropdown-container" style="position:absolute;top:10px;right:250px"></div>
 
 </body>
 </html>

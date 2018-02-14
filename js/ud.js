@@ -89,7 +89,7 @@ $( document ).ready(function() {
 	$('#ud-dropdown2').find('.maptoggle').toggleClass('maptoggle maptoggle2');
 	$('#ud-dropdown2').hide();
 	$('.maptoggle2').hide();
-	$('#dropdown-container').css("right","180px")
+	$('#dropdown-container').css("right","10px")
 
 	// assign actions to drop down selections
 	$(".menu1 li a").click(function(){
@@ -172,7 +172,7 @@ UD.init = function()
 		// .addTo(UD.map1)
 		.on('done', function(metro) {
 			metro.setZIndex(0);
-			layerControl.addOverlay(metro, 'Metro stops');
+			layerControl.addOverlay(metro, 'LA Metro stops');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
@@ -183,7 +183,7 @@ UD.init = function()
 		// .addTo(UD.map1)
 		.on('done', function(healthy) {
 			healthy.setZIndex(0);
-			layerControl.addOverlay(healthy, 'Healthy Communities');
+			layerControl.addOverlay(healthy, '<a href="http://www.calendow.org/building-healthy-communities/" target="_blank">Building Healthy Community Sites</a>');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
@@ -197,7 +197,7 @@ UD.init = function()
 		// .addTo(UD.map2)
 		.on('done', function(metro) {
 			metro.setZIndex(0);
-			layerControl2.addOverlay(metro, 'Metro stops');
+			layerControl2.addOverlay(metro, 'LA Metro stops');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
@@ -208,7 +208,7 @@ UD.init = function()
 		// .addTo(UD.map1)
 		.on('done', function(healthy) {
 			healthy.setZIndex(0);
-			layerControl2.addOverlay(healthy, 'Healthy Communities');
+			layerControl2.addOverlay(healthy, '<a href="http://www.calendow.org/building-healthy-communities/" target="_blank">Building Healthy Community Sites</a>');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
@@ -332,9 +332,6 @@ UD.addLayer = function(param,year,map2use)
 
 UD.toggleDualMap = function(mode)
 {
-	// resync maps because buggy if you don't
-	// UD.map1.sync(UD.map2);
-	// UD.map2.sync(UD.map1);
 
 	if(mode=='single')
 	{
@@ -361,5 +358,9 @@ UD.toggleDualMap = function(mode)
 		UD.dualmap = true;
 
 	}
+	// resync maps because buggy if you don't
+	UD.map1.sync(UD.map2);
+	UD.map2.sync(UD.map1);
+
 }
 
