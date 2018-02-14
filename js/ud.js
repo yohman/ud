@@ -172,7 +172,7 @@ UD.init = function()
 		// .addTo(UD.map1)
 		.on('done', function(metro) {
 			metro.setZIndex(0);
-			layerControl.addOverlay(metro, 'LA Metro stops');
+			layerControl.addOverlay(metro, 'LA Metro Rail');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
@@ -197,7 +197,7 @@ UD.init = function()
 		// .addTo(UD.map2)
 		.on('done', function(metro) {
 			metro.setZIndex(0);
-			layerControl2.addOverlay(metro, 'LA Metro stops');
+			layerControl2.addOverlay(metro, 'LA Metro Rail');
 		})
 		.on('error', function(err) {
 			alert("some error occurred: " + err);
